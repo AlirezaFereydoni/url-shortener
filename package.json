@@ -1,6 +1,6 @@
 {
   "name": "url-shortener",
-  "module": "index.ts",
+  "module": "app.ts",
   "type": "module",
   "author": {
     "email": "AlirezaFereydoni@outlook.com",
