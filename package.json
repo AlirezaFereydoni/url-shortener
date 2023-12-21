@@ -1,0 +1,24 @@
+{
+  "name": "url-shortener",
+  "module": "index.ts",
+  "type": "module",
+  "author": {
+    "email": "AlirezaFereydoni@outlook.com",
+    "name": "AlirezaFereydoni",
+    "url": "https://github.com/AlirezaFereydoni"
+  },
+  "scripts": {
+    "start": "nodemon run server.ts"
+  },
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^3.0.2",
+    "ts-node": "^10.9.2"
+  }
+}
