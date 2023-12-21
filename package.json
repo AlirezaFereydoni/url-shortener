@@ -8,9 +8,11 @@
     "url": "https://github.com/AlirezaFereydoni"
   },
   "scripts": {
-    "start": "nodemon run server.ts"
+    "start": "bun server.ts"
   },
   "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.10.5",
     "bun-types": "latest"
   },
   "peerDependencies": {
@@ -18,7 +20,6 @@
   },
   "dependencies": {
     "express": "^4.18.2",
-    "nodemon": "^3.0.2",
     "ts-node": "^10.9.2"
   }
 }
