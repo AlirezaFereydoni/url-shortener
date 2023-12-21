@@ -1,8 +1,8 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response } from 'express';
 import encrypt from 'js-sha256';
 import URL from '../models';
 
-const createShortenerURL = async (req: Request, res: Response, next: NextFunction) => {
+const createShortenerURL = async (req: Request, res: Response) => {
   try {
     const originalUrl = req.body.url;
     if (!originalUrl)
@@ -11,7 +11,6 @@ const createShortenerURL = async (req: Request, res: Response, next: NextFunctio
       });
 
     const hashedUrl = encrypt.sha256(originalUrl);
-    console.log(hashedUrl);
 
     const shortenerUrl = await URL.create({ originalUrl: originalUrl, shortUrl: hashedUrl });
 
@@ -24,7 +23,7 @@ const createShortenerURL = async (req: Request, res: Response, next: NextFunctio
   }
 };
 
-const getOriginalURL = async (req: Request, res: Response, next: NextFunction) => {
+const getOriginalURL = async (req: Request, res: Response) => {
   try {
     const url = req.params.shortUrl;
     const item = await URL.findOne({ shortUrl: url });
