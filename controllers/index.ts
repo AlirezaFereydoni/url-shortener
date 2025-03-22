@@ -2,13 +2,13 @@ import { Request, Response } from "express";
 import encrypt from "js-sha256";
 import URL from "../models";
 import redis from "redis";
-import { origin } from "bun";
 
 const redisClient = redis.createClient();
 await redisClient.connect();
 
 const createShortenerURL = async (req: Request, res: Response) => {
   try {
+    console.log("receive request");
     const originalUrl = req.body.url;
     if (!originalUrl)
       return res.status(400).json({
@@ -37,6 +37,9 @@ const getOriginalURL = async (req: Request, res: Response) => {
     if (cachedItem) return res.status(200).json({ originUrl: cachedItem });
 
     const item = await URL.findOne({ shortUrl: url });
+
+    if (item?.originalUrl && url) await redisClient.set(url, item.originalUrl);
+
     if (!item) return res.status(404).json({ message: "This url does not exist" });
 
     res.status(200).json({ originalUrl: item.originalUrl });
